@@ -39,8 +39,10 @@ class MyHandler(http.server.BaseHTTPRequestHandler):
         self.end_headers()
         self.wfile.write(message.encode('utf-8'))
 
-        out = ["Client: {}".format(self.client_address),
-               "Path: {}".format(parsed_path.path)]
+        out = ["Client={}".format(self.client_address),
+               "Path={}".format(parsed_path.path),
+               "SysVersion={}".format(self.sys_version)]
+
         print("\n".join(out))
 
 httpd = socketserver.TCPServer(("", PORT), MyHandler)
